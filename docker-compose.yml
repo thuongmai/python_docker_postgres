@@ -1,0 +1,54 @@
+version: '3.4'
+
+services:
+  # postgresdockerpython:
+  #   image: postgresdockerpython
+  #   build:
+  #     context: .
+  #     dockerfile: ./Dockerfile
+  database:
+    container_name: pg_container
+    image: postgres
+    ports:
+      - 5432:5432
+    restart: always
+    networks:
+      - python-postgres-docker-network
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: exampledb
+    volumes:
+      # to store data inside the volumnes, stop container only to preserve this volumes
+      # do not run docker-compose down, it will wipe out volumes
+      # - /var/lib/postgresql/data # Default data volumnes
+      - db-data:/var/lib/postgresql/data # mount the volume to separated volume call db-data, it can be find in \\wsl$\docker-desktop-data\data\docker\volumes on windows 10 using WSL2
+  adminer:
+    container_name: pg_container_ui
+    image: adminer
+    restart: always
+    networks:
+      - python-postgres-docker-network
+    depends_on:
+      - database
+    ports:
+      - 8080:8080 # expose port 8080 to http://localhost:8080
+  pgadmin:
+    container_name: pgadmin4_container_ui
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    networks:
+      - python-postgres-docker-network
+    depends_on:
+      - database
+
+# Define a separated volume
+volumes:
+  db-data:
+networks:
+  python-postgres-docker-network:
