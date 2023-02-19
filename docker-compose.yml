@@ -22,7 +22,7 @@ services:
       # to store data inside the volumnes, stop container only to preserve this volumes
       # do not run docker-compose down, it will wipe out volumes
       # - /var/lib/postgresql/data # Default data volumnes
-      - db-data:/var/lib/postgresql/data # mount the volume to separated volume call db-data, it can be find in \\wsl$\docker-desktop-data\data\docker\volumes on windows 10 using WSL2
+      - db-data:/var/lib/postgresql/data # mount the volume to separated volume call db-data, it can be find in \\wsl$\docker-desktop-data\data\docker\volumes on windows 10 using WSL2. This can use docker-down since volume is stored in different location
   adminer:
     container_name: pg_container_ui
     image: adminer
@@ -47,7 +47,7 @@ services:
     depends_on:
       - database
 
-# Define a separated volume
+# Define a separated volume location
 volumes:
   db-data:
 networks:
