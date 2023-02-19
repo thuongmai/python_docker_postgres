@@ -8,6 +8,7 @@ conn = psycopg2.connect(
     password="docker",
     host="0.0.0.0",
 )
+
 # Make sure the insert will commit to the table
 conn.autocommit = True
 

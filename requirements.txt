@@ -1,4 +1,6 @@
-black==22.12.0
-mypy==0.991
-mypy-extensions==0.4.3
-psycopg2==2.9.5
+black>=22.12.0
+mypy>=0.991
+mypy-extensions>=0.4.3
+psycopg2>=2.9.5
+pylint>=2.16.2
+# psycopg2-binary>=2.9.5 # If psycopg2 failed due to missing dependencies, use binary in local temporary
