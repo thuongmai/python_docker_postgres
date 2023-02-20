@@ -63,3 +63,4 @@ make docker-down
 - Set `Python: formatter` to `black`
 - Set `Python: mypy linter` to true
 - Set `Python: pylint linter` to true
+- Use `isort` to sort import
