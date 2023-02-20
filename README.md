@@ -57,3 +57,9 @@ Register servers using info from docker-compose.yml:
 ```
 make docker-down
 ```
+
+
+## V) Additional tools
+- Set `Python: formatter` to `black`
+- Set `Python: mypy linter` to true
+- Set `Python: pylint linter` to true
